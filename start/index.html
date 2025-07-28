@@ -160,9 +160,44 @@
       display: none;
       text-decoration: none;
     }
+
+    #start-overlay {
+  position: fixed;
+  inset: 0;
+  background: #111;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 1s ease;
+}
+
+#start-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#start-button {
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  background: #f2e27d;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#start-button:hover {
+  background: #f8d95e;
+}
   </style>
 </head>
 <body>
+
+<div id="start-overlay">
+  <button id="start-button">Start</button>
+</div>
 
 <div class="layout-wrapper">
 
@@ -220,6 +255,19 @@
 
 <script>
   const sliders=[document.getElementById("slider1"),document.getElementById("slider2"),document.getElementById("slider3"),document.getElementById("slider4")],layerKeys=["wrap1","wrap2","wrap3","wrap4"];let playerHasInteracted=!1,snapped=!1;const wrapperTransforms={wrap1:[-20,76],wrap2:[-72,28],wrap3:[-12,29],wrap4:[-33,15]};function getChunk(e){let r={0:["u","!","f","@","g"],1:[115,98,102],2:()=>atob("Y2hh")};return 0===e?r[0].filter((e,r)=>r%2==0).map((e,r)=>String.fromCharCode(e.charCodeAt(0)-[3,1,4][r])).join(""):1===e?r[1].map(e=>String.fromCharCode(18^e)).join(""):2===e?r[2]():""}function assembleHiddenPath(){let e=getChunk(0),r=getChunk(1),a=getChunk(2);return"/"+[2,1,0].sort().map(t=>[e,r,a][t]).join("")}function revealHiddenLink(){let e=document.createElement("a");e.href=assembleHiddenPath(),e.setAttribute("aria-label","Continue"),e.classList.add("overlay-link"),e.style.display="block";let r=document.getElementById("hidden-link-wrapper");r.appendChild(e)}function applyOffset(e,r,a="x"){let[t,n]=wrapperTransforms[e];setTransform(`${e}-outer`,t,a),setTransform(`${e}-mid`,n,a),setTransform(`${e}-inner`,r,a)}function setTransform(e,r,a="x"){let t=document.getElementById(e);t.style.transform="x"===a?`translate(${r}px, 0)`:`translate(0, ${r}px)`}function snapToAligned(e,r="x"){["outer","mid","inner"].forEach(r=>{let a=document.getElementById(`${e}-${r}`);a.style.transition="transform 1.5s ease-in-out",a.style.transform="translate(0px, 0px)"})}function updateTransforms(){if(snapped)return;let e={wrap1:+sliders[0].value,wrap2:+sliders[1].value,wrap3:-1*sliders[2].value,wrap4:-1*sliders[3].value};if(applyOffset("wrap1",e.wrap1,"x"),applyOffset("wrap2",e.wrap2,"x"),applyOffset("wrap3",e.wrap3,"y"),applyOffset("wrap4",e.wrap4,"y"),!playerHasInteracted)return;let r=layerKeys.every((r,a)=>{let[t,n]=wrapperTransforms[r],s=e[r];return 2>=Math.abs(t+n+s)});r&&(snapped=!0,sliders.forEach(e=>e.disabled=!0),snapToAligned("wrap1","x"),snapToAligned("wrap2","x"),snapToAligned("wrap3","y"),snapToAligned("wrap4","y"),document.querySelector(".container").classList.add("solved"),revealHiddenLink(),console.log("✅ Puzzle snapped into correct alignment."))}sliders.forEach(e=>e.addEventListener("input",()=>{playerHasInteracted=!0,updateTransforms()})),updateTransforms();
+
+  document.getElementById('start-button').addEventListener('click', () => {
+  const overlay = document.getElementById('start-overlay');
+  const wrapper = document.querySelector('.layout-wrapper');
+
+  overlay.classList.add('fade-out');
+
+  setTimeout(() => {
+    wrapper.style.transition = 'opacity 1s ease';
+    wrapper.style.opacity = '1';
+    wrapper.style.pointerEvents = 'auto';
+  }, 1000); // wait for overlay to fade out
+});
 </script>
 </body>
 </html>
