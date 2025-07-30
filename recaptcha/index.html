@@ -26,13 +26,25 @@
       position: relative;
     }
 
-    .cash-balance {
-      position: absolute;
+    .cash-box {
+      position: fixed;
       top: 1rem;
       right: 1rem;
+      background: #1e1f22;
+      padding: 1rem 1.5rem;
+      border: 1px solid #555;
+      box-shadow: 0 0 5px #000;
       font-size: 1.2rem;
       font-weight: bold;
       color: #9f9;
+    }
+
+    .cash-deduction {
+      font-size: 1rem;
+      color: #f66;
+      margin-top: 0.25rem;
+      opacity: 1;
+      transition: opacity 1s ease-out;
     }
 
     .step {
@@ -78,75 +90,187 @@
 
     .progress-bar {
       background: #555;
-      height: 10px;
+      height: 16px;
       border-radius: 5px;
       overflow: hidden;
+      position: relative;
     }
 
     .progress {
       height: 100%;
       background: #f8d95e;
       width: 0%;
+      transition: width 0.2s;
     }
 
-    .next-btn {
-      background: #f2e27d;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
+    .progress-text {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: 0.85rem;
+      top: -1.4rem;
+      color: #ccc;
+      font-style: italic;
+    }
+
+    #stay-awake-prompt {
+      display: none;
+      background: #f8d95e;
+      color: #000;
+      padding: 0.5rem;
+      text-align: center;
       border-radius: 5px;
+      font-size: 0.9rem;
       cursor: pointer;
-      align-self: flex-start;
     }
   </style>
 </head>
 <body>
+  <div class="cash-box">
+    <div id="cash">$300.00</div>
+    <div id="deduction" class="cash-deduction" style="display:none;"></div>
+  </div>
   <div class="game-wrapper">
-    <div class="cash-balance" id="cash">$300.00</div>
-
     <div class="step active" id="step1">
       <label class="checkbox-label">
         <div class="custom-checkbox" id="checkbox"></div>
         We just need to verify that you are not a financial risk.
       </label>
-      <div class="progress-bar"><div class="progress" id="progress"></div></div>
+      <div class="progress-bar">
+        <div class="progress-text" id="progress-text"></div>
+        <div class="progress" id="progress"></div>
+      </div>
+      <div id="stay-awake-prompt">Are you still waiting? Click to continue...</div>
       <div class="message" id="step1-message"></div>
     </div>
 
-    <!-- Future steps will go here -->
+    <div class="step" id="step2">
+      <div class="message">Please enter the text shown in the image:</div>
+      <div style="background:#000; padding:1rem; text-align:center; font-family:monospace; color:#444; font-size:1.5rem;">
+        &#9608;&#9608;&#9617;&#9618;&#9619;&#9608;&#9619;
+      </div>
+      <input type="text" id="text-captcha" placeholder="Enter text here" style="padding: 0.5rem;" />
+      <div class="message" id="step2-message"></div>
+    </div>
 
+    <div class="step" id="step3">
+      <div class="message">Click all images with traffic lights:</div>
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:5px;">
+        <div style="background:#333; padding:30px;">🛑</div>
+        <div style="background:#333; padding:30px;">🚦</div>
+        <div style="background:#333; padding:30px;">🏁</div>
+        <div style="background:#333; padding:30px;">🚦</div>
+        <div style="background:#333; padding:30px;">🚗</div>
+        <div style="background:#333; padding:30px;">🚦</div>
+      </div>
+      <div class="message" id="step3-message"></div>
+    </div>
+
+    <div class="step" id="step4">
+      <div class="message">Solve for x: 3x + 4 = 13</div>
+      <input type="text" id="math-answer" placeholder="x = ?" style="padding: 0.5rem;" />
+      <div class="message" id="step4-message"></div>
+    </div>
+
+    <div class="step" id="step5">
+      <div class="message" style="color:#f66; font-weight:bold; font-size: 1.2rem;">
+        You are now bankrupt. You have been referred to Captcha Collections™.
+      </div>
+    </div>
   </div>
 
   <script>
     let balance = 300;
     const cashDisplay = document.getElementById('cash');
+    const deductionDisplay = document.getElementById('deduction');
     const checkbox = document.getElementById('checkbox');
     const progress = document.getElementById('progress');
+    const progressText = document.getElementById('progress-text');
     const step1Message = document.getElementById('step1-message');
+    const prompt = document.getElementById('stay-awake-prompt');
 
-    function updateCash(amount) {
-      balance -= amount;
-      cashDisplay.textContent = `$${balance.toFixed(2)}`;
+    function updateCash(amount, callback) {
+      deductionDisplay.textContent = `-$${amount.toFixed(2)}`;
+      deductionDisplay.style.display = 'block';
+      setTimeout(() => { deductionDisplay.style.opacity = 0; }, 500);
+      let target = balance - amount;
+      let current = balance;
+      const step = () => {
+        if (current > target) {
+          current--;
+          cashDisplay.textContent = `$${current.toFixed(2)}`;
+          requestAnimationFrame(step);
+        } else {
+          balance = target;
+          deductionDisplay.style.display = 'none';
+          deductionDisplay.style.opacity = 1;
+          updateCashColor();
+          if (callback) callback();
+        }
+      }
+      step();
+    }
+
+    function updateCashColor() {
       if (balance > 200) cashDisplay.style.color = '#9f9';
       else if (balance > 50) cashDisplay.style.color = '#ffa500';
       else cashDisplay.style.color = '#f66';
     }
+
+    const loadingTexts = [
+      "Counting buttons...",
+      "Auditing mouse trails...",
+      "Sorting the hamsters...",
+      "Retrieving ethical evaluation...",
+      "Validating latency jitter...",
+      "Waiting for divine intervention..."
+    ];
 
     checkbox.addEventListener('click', () => {
       if (checkbox.classList.contains('checked')) return;
       checkbox.classList.add('checked');
 
       let progressWidth = 0;
+      let textIndex = 0;
+      let promptTimeout;
       const interval = setInterval(() => {
-        progressWidth += 1;
+        progressWidth++;
         progress.style.width = `${progressWidth}%`;
+        if (progressWidth % 20 === 0 && textIndex < loadingTexts.length) {
+          progressText.textContent = loadingTexts[textIndex++];
+        }
+
+        if (progressWidth === 50) {
+          prompt.style.display = 'block';
+          promptTimeout = setTimeout(() => {
+            clearInterval(interval);
+            checkbox.classList.remove('checked');
+            progress.style.width = '0%';
+            progressText.textContent = '';
+            prompt.style.display = 'none';
+          }, 5000);
+        }
+
         if (progressWidth >= 100) {
           clearInterval(interval);
+          clearTimeout(promptTimeout);
+          prompt.style.display = 'none';
+          progressText.textContent = '';
           step1Message.textContent = "Verification failed. You blinked too fast.\n-$15.00 deducted for additional screening.";
-          updateCash(15);
+          updateCash(15, () => advanceStep('step2'));
         }
-      }, 30);
+      }, 120);
+
+      prompt.onclick = () => {
+        prompt.style.display = 'none';
+        clearTimeout(promptTimeout);
+      };
     });
+
+    function advanceStep(nextId) {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      document.getElementById(nextId).classList.add('active');
+    }
   </script>
 </body>
 </html>
