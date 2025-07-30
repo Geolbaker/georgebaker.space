@@ -4,179 +4,184 @@
   <meta charset="UTF-8">
   <title>Stage 1 - Slider Puzzle</title>
   <style>
-    html {
-      height: 100%;
-    }
-    body {
-      font-family: sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      height: 100%;
-    }
+    html, body {
+  height: 100%;
+  margin: 0;
+  background: #2D2E32;
+  font-family: 'Georgia', serif;
+  color: #F6F6F6;
+}
 
-    .layout-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 50px;
-      height: 100%;
-    }
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  height: 100%;
+}
 
-    .content-row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
+.content-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-    .container {
-      position: relative;
-      width: 400px;
-      height: 400px;
-      overflow: hidden;
-      border: 2px solid #ccc;
-    }
+.container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  border: 2px solid #444;
+  background-color: #1E1F22;
+}
 
-    .image {
-      width: 100%;
-      height: 100%;
-      mix-blend-mode: exclusion;
-      pointer-events: none;
-    }
+.image {
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: exclusion;
+  pointer-events: none;
+}
 
-    .wrapOuter, .wrapMiddle, .wrapInner {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      transition: none;
-      mix-blend-mode: exclusion;
-      z-index: 1;
-    }
+.wrapOuter, .wrapMiddle, .wrapInner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: none;
+  mix-blend-mode: exclusion;
+  z-index: 1;
+}
 
-    .slider {
-      appearance: none;
-      background: #ccc;
-      border-radius: 4px;
-      outline: none;
-      width: 400px;
-    }
+/* Sliders */
+.slider {
+  appearance: none;
+  border-radius: 4px;
+  outline: none;
+  width: 400px;
+}
 
-    .slider.horizontal {
-      width: 400px;
-      height: 8px;
-      background: #ccc;
-      border-radius: 4px;
-    }
+.slider.horizontal {
+  width: 400px;
+  height: 8px;
+  background: #444;
+}
 
-    .slider.vertical {
-      width: 400px;
-      height: 8px;
-      transform: rotate(270deg);
-      transform-origin: center;
-      position: absolute;
-      top: 200px;
-      left: -140px;
-    }
+.slider.vertical {
+  width: 400px;
+  height: 8px;
+  transform: rotate(270deg);
+  transform-origin: center;
+  position: absolute;
+  top: 200px;
+  left: -140px;
+  background: #444;
+}
 
-    .slider-wrapper {
-      height: 400px; 
-      width: 125px;
-      position: relative;
-    }
+.slider-wrapper {
+  height: 400px; 
+  width: 125px;
+  position: relative;
+}
 
-    .slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 14px;
-      height: 14px;
-      background: #444;
-      border-radius: 50%;
-      cursor: pointer;
-      margin-top: -3px;
-    }
+/* Thumbs */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #F57C00;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -3px;
+}
 
-    .slider::-moz-range-thumb {
-      width: 14px;
-      height: 14px;
-      background: #444;
-      border-radius: 50%;
-      cursor: pointer;
-    }
+.slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #F57C00;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
-    .slider::-webkit-slider-runnable-track {
-      background: #ccc;
-      border-radius: 4px;
-      height: 100%;
-    }
+/* Tracks */
+.slider::-webkit-slider-runnable-track {
+  background: #444;
+  border-radius: 4px;
+  height: 100%;
+}
 
-    .container::before,
-    .container::after {
-      content: '';
-      position: absolute;
-      width: 800px;
-      height: 800px;
-      top: -200px;
-      left: -200px;
-      z-index: 0;
-      pointer-events: none;
-      transition: opacity 2s ease;
-    }
+/* Background effects */
+.container::before,
+.container::after {
+  content: '';
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  top: -200px;
+  left: -200px;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 2s ease;
+}
 
-    .container::before {
-      background: repeating-conic-gradient(#A4D8DD 0deg 15deg, #91D1DB 15deg 30deg);
-      animation: spin 15s linear infinite;
-      opacity: 1;
-    }
+.container::before {
+  background: repeating-conic-gradient(#3A4957 0deg 15deg, #2D3A46 15deg 30deg);
+  animation: spin 15s linear infinite;
+  opacity: 1;
+}
 
-    .container::after {
-      background: repeating-conic-gradient(#f2e27d 0deg 15deg, #f8d95e 15deg 30deg);
-      opacity: 0;
-    }
+.container::after {
+  background: repeating-conic-gradient(#f2c94c 0deg 15deg, #f2994a 15deg 30deg);
+  opacity: 0;
+}
 
-    .container.solved::before {
-      animation: none;
-      opacity: 0;
-    }
+.container.solved::before {
+  animation: none;
+  opacity: 0;
+}
 
-    .container.solved::after {
-      opacity: 1;
-    }
+.container.solved::after {
+  opacity: 1;
+}
 
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
-    .overlay-link {
-      position: absolute;
-      inset: 0;
-      z-index: 10;
-      display: none;
-      text-decoration: none;
-    }
+/* Overlay link */
+.overlay-link {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: none;
+  text-decoration: none;
+}
 
-    .container.solved .overlay-link {
-      display: block;
-    }
+.container.solved .overlay-link {
+  display: block;
+}
 
-    #hidden-link-wrapper a {
-      position: absolute;
-      inset: 0;
-      z-index: 10;
-      display: none;
-      text-decoration: none;
-    }
+#hidden-link-wrapper a {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: none;
+  text-decoration: none;
+}
 
-    #start-overlay {
+/* Start overlay */
+#start-overlay {
   position: fixed;
   inset: 0;
-  background: #111;
-  color: white;
+  background: #1A1B1F;
+  color: #F6F6F6;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
   transition: opacity 1s ease;
+  font-family: 'Georgia', serif;
 }
 
 #start-overlay.fade-out {
@@ -187,16 +192,22 @@
 #start-button {
   font-size: 1.5rem;
   padding: 1rem 2rem;
-  background: #f2e27d;
+  background: #F57C00;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 #start-button:hover {
-  background: #f8d95e;
+  background: #ffa64d;
+  transform: scale(1.05);
 }
+
   </style>
 </head>
 <body>
