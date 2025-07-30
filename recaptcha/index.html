@@ -228,7 +228,11 @@
       "Sorting the hamsters...",
       "Retrieving ethical evaluation...",
       "Validating latency jitter...",
-      "Waiting for divine intervention..."
+      "Waiting for divine intervention...",
+      "Downloading checkbox..."," +
+        "
+      "Reversing previous progress...",
+      "Redownloading checkbox..."
     ];
 
     checkbox.addEventListener('click', () => {
@@ -237,56 +241,70 @@
 
       let progressWidth = 0;
       let textIndex = 0;
-      let countdown = 5;
-      let promptTimeout;
-      prompt.innerHTML = `Verify your intent by clicking here (${countdown})`;
+      let promptClicked = false;
+      let reverse = false;
+      let promptTimer;
+      let interval;
 
-      const countdownInterval = setInterval(() => {
-        countdown--;
+      function showPrompt() {
+        let countdown = 5;
+        prompt.style.display = 'block';
         prompt.innerHTML = `Verify your intent by clicking here (${countdown})`;
-        if (countdown <= 0) {
-          clearInterval(countdownInterval);
-          clearInterval(interval);
-          checkbox.classList.remove('checked');
-          progress.style.width = '0%';
-          progressText.textContent = '';
-          prompt.style.display = 'none';
-        }
-      }, 1000);
 
-      const interval = setInterval(() => {
-        progressWidth++;
-        progress.style.width = `${progressWidth}%`;
-        progressText.textContent = loadingTexts[Math.floor(progressWidth / 16) % loadingTexts.length];
-
-        if (progressWidth === 50) {
-          prompt.style.display = 'block';
-          promptTimeout = setTimeout(() => {
-            clearInterval(interval);
+        const countdownInterval = setInterval(() => {
+          countdown--;
+          prompt.innerHTML = `Verify your intent by clicking here (${countdown})`;
+          if (countdown <= 0 && !promptClicked) {
             clearInterval(countdownInterval);
+            clearInterval(interval);
             checkbox.classList.remove('checked');
             progress.style.width = '0%';
             progressText.textContent = '';
             prompt.style.display = 'none';
-          }, 5000);
-        }
+          }
+        }, 1000);
 
+        prompt.onclick = () => {
+          promptClicked = true;
+          prompt.style.display = 'none';
+        };
+
+        promptTimer = setTimeout(() => {
+          if (!promptClicked) {
+            clearInterval(countdownInterval);
+            clearInterval(interval);
+            checkbox.classList.remove('checked');
+            progress.style.width = '0%';
+            progressText.textContent = '';
+            prompt.style.display = 'none';
+          }
+        }, 5000);
+      }
+
+      interval = setInterval(() => {
         if (progressWidth >= 100) {
           clearInterval(interval);
-          clearInterval(countdownInterval);
-          clearTimeout(promptTimeout);
+          clearTimeout(promptTimer);
           prompt.style.display = 'none';
           progressText.textContent = '';
           step1Message.textContent = "Verification failed. You blinked too fast.\n-$15.00 deducted for additional screening.";
           updateCash(15, () => advanceStep('step2'));
-        }
-      }, 150);
+        } else {
+          if (progressWidth === 50 && !promptClicked) {
+            showPrompt();
+          }
 
-      prompt.onclick = () => {
-        prompt.style.display = 'none';
-        clearTimeout(promptTimeout);
-        clearInterval(countdownInterval);
-      };
+          if (progressWidth >= 60 && progressWidth <= 70 && !reverse) {
+            reverse = true;
+            progressWidth -= 10;
+          } else {
+            progressWidth++;
+          }
+
+          progress.style.width = `${progressWidth}%`;
+          progressText.textContent = loadingTexts[Math.floor(progressWidth / 12) % loadingTexts.length];
+        }
+      }, 300);
     });
 
     function submitTextCaptcha() {
