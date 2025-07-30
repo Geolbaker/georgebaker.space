@@ -108,9 +108,13 @@
       width: 100%;
       text-align: center;
       font-size: 0.85rem;
-      top: -1.4rem;
-      color: #ccc;
+      top: 0;
+      color: #000;
       font-style: italic;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     #stay-awake-prompt {
@@ -140,7 +144,7 @@
         <div class="progress-text" id="progress-text"></div>
         <div class="progress" id="progress"></div>
       </div>
-      <div id="stay-awake-prompt">Are you still waiting? Click to continue...</div>
+      <div id="stay-awake-prompt"></div>
       <div class="message" id="step1-message"></div>
     </div>
 
@@ -150,6 +154,7 @@
         &#9608;&#9608;&#9617;&#9618;&#9619;&#9608;&#9619;
       </div>
       <input type="text" id="text-captcha" placeholder="Enter text here" style="padding: 0.5rem;" />
+      <button onclick="submitTextCaptcha()">Submit</button>
       <div class="message" id="step2-message"></div>
     </div>
 
@@ -169,6 +174,7 @@
     <div class="step" id="step4">
       <div class="message">Solve for x: 3x + 4 = 13</div>
       <input type="text" id="math-answer" placeholder="x = ?" style="padding: 0.5rem;" />
+      <button onclick="submitMathAnswer()">Submit</button>
       <div class="message" id="step4-message"></div>
     </div>
 
@@ -192,12 +198,11 @@
     function updateCash(amount, callback) {
       deductionDisplay.textContent = `-$${amount.toFixed(2)}`;
       deductionDisplay.style.display = 'block';
-      setTimeout(() => { deductionDisplay.style.opacity = 0; }, 500);
       let target = balance - amount;
       let current = balance;
       const step = () => {
         if (current > target) {
-          current--;
+          current -= 1;
           cashDisplay.textContent = `$${current.toFixed(2)}`;
           requestAnimationFrame(step);
         } else {
@@ -232,18 +237,33 @@
 
       let progressWidth = 0;
       let textIndex = 0;
+      let countdown = 5;
       let promptTimeout;
+      prompt.innerHTML = `Verify your intent by clicking here (${countdown})`;
+
+      const countdownInterval = setInterval(() => {
+        countdown--;
+        prompt.innerHTML = `Verify your intent by clicking here (${countdown})`;
+        if (countdown <= 0) {
+          clearInterval(countdownInterval);
+          clearInterval(interval);
+          checkbox.classList.remove('checked');
+          progress.style.width = '0%';
+          progressText.textContent = '';
+          prompt.style.display = 'none';
+        }
+      }, 1000);
+
       const interval = setInterval(() => {
         progressWidth++;
         progress.style.width = `${progressWidth}%`;
-        if (progressWidth % 20 === 0 && textIndex < loadingTexts.length) {
-          progressText.textContent = loadingTexts[textIndex++];
-        }
+        progressText.textContent = loadingTexts[Math.floor(progressWidth / 16) % loadingTexts.length];
 
         if (progressWidth === 50) {
           prompt.style.display = 'block';
           promptTimeout = setTimeout(() => {
             clearInterval(interval);
+            clearInterval(countdownInterval);
             checkbox.classList.remove('checked');
             progress.style.width = '0%';
             progressText.textContent = '';
@@ -253,19 +273,33 @@
 
         if (progressWidth >= 100) {
           clearInterval(interval);
+          clearInterval(countdownInterval);
           clearTimeout(promptTimeout);
           prompt.style.display = 'none';
           progressText.textContent = '';
           step1Message.textContent = "Verification failed. You blinked too fast.\n-$15.00 deducted for additional screening.";
           updateCash(15, () => advanceStep('step2'));
         }
-      }, 120);
+      }, 150);
 
       prompt.onclick = () => {
         prompt.style.display = 'none';
         clearTimeout(promptTimeout);
+        clearInterval(countdownInterval);
       };
     });
+
+    function submitTextCaptcha() {
+      const input = document.getElementById('text-captcha').value.trim();
+      document.getElementById('step2-message').textContent = "Incorrect entry. A trained mouse could have solved that one.\n-$45.00 deducted for optical character rehabilitation.";
+      updateCash(45, () => advanceStep('step3'));
+    }
+
+    function submitMathAnswer() {
+      const input = document.getElementById('math-answer').value.trim();
+      document.getElementById('step4-message').textContent = "You failed to account for implicit intention drift. '+' was actually a rotated 'x'.\n-$90.00 deducted for temporal reasoning remediation.";
+      updateCash(90, () => advanceStep('step5'));
+    }
 
     function advanceStep(nextId) {
       document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
