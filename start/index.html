@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Puzzle 1 — Research Warm-Up</title>
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --card: #ffffff;
+      --text: #222;
+      --muted: #666;
+      --accent: #0a7ea4;
+      --accent-hover: #075e7a;
+      --ok: #1a7f37;
+      --err: #a11313;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 6rem auto;
+      padding: 0 1rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      padding: 2rem;
+    }
+    h1, h2 { margin: 0 0 0.5rem 0; }
+    p.lead { margin-top: 0; color: var(--muted); }
+    form {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    input[type="text"] {
+      flex: 1;
+      font-size: 1rem;
+      padding: 0.8rem 0.9rem;
+      border: 1px solid #d9d9d9;
+      border-radius: 10px;
+      outline: none;
+    }
+    input[type="text"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(10,126,164,0.12); }
+    button {
+      font-size: 1rem;
+      padding: 0.8rem 1.1rem;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover { background: var(--accent-hover); }
+    .hint { margin-top: 0.5rem; color: var(--muted); font-size: 0.95rem; }
+    .feedback {
+      margin-top: 0.75rem;
+      min-height: 1.25rem; /* reserve space to avoid layout jump */
+      font-weight: 600;
+    }
+    .ok { color: var(--ok); }
+    .err { color: var(--err); }
+    .hidden { display: none !important; }
+    .center {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <!-- Puzzle 1 -->
+    <section id="puzzle-1" class="card" aria-labelledby="p1-title">
+      <h1 id="p1-title">Puzzle 1 — Research Warm-Up</h1>
+      <p class="lead">In which year did Tim Berners-Lee first propose the World Wide Web?</p>
+
+      <form id="p1-form" autocomplete="off" novalidate>
+        <label for="p1-answer" class="sr-only">Type the 4-digit year</label>
+        <input id="p1-answer" name="answer" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Type the 4-digit year" aria-describedby="p1-hint p1-feedback" />
+        <button type="submit" aria-label="Submit answer for Puzzle 1">Submit</button>
+      </form>
+      <div id="p1-hint" class="hint">Hint: Proposed at CERN; the year is four digits.</div>
+      <div id="p1-feedback" class="feedback" aria-live="polite"></div>
+    </section>
+
+    <!-- Puzzle 2 (placeholder only; content to be added later) -->
+    <section id="puzzle-2" class="card hidden" aria-labelledby="p2-title" tabindex="-1">
+      <h2 id="p2-title">Puzzle 2</h2>
+      <div class="center">
+        <p><em>Coming soon…</em></p>
+        <p class="hint">This wrapper is in place, but the puzzle isn’t available yet.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const form = document.getElementById('p1-form');
+      const input = document.getElementById('p1-answer');
+      const feedback = document.getElementById('p1-feedback');
+      const p1 = document.getElementById('puzzle-1');
+      const p2 = document.getElementById('puzzle-2');
+
+      // Focus the input on load for convenience
+      input.focus();
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const val = (input.value || '').trim();
+
+        if (val === '1989') {
+          feedback.textContent = 'Correct. Advancing…';
+          feedback.className = 'feedback ok';
+
+          // Small delay so players can see the confirmation
+          setTimeout(() => {
+            // Hide Puzzle 1, show Puzzle 2
+            p1.classList.add('hidden');
+            p2.classList.remove('hidden');
+            p2.focus({ preventScroll: false });
+          }, 600);
+        } else {
+          feedback.textContent = val ? 'Not quite — try again.' : 'Please enter a year.';
+          feedback.className = 'feedback err';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
