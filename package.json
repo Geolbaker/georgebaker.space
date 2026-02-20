@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://georgebaker.space",
+  "homepage": "https://geolbaker.github.io/georgebaker.space",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.6.4",
