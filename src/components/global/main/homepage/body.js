@@ -153,8 +153,6 @@ function Body() {
               after:absolute after:content-['Work_In_Progress'] after:top-0 after:items-center
               after:flex after:justify-center after:right-[-0.5rem] after:bg-homepage-text
               after:w-[17ch] after:h-5 after:rounded-md after:z-20"></span>
-              // <button className="link link-underline-25 link-emphasis text-homepage-text text-left"
-              // onClick={() => window.open('/#/xp', '_self')}>Windows Xp</button>
               <button className="link link-underline-25 link-emphasis text-homepage-text text-left"
               onClick={() => window.open('/#/mac', '_self')}>GlassOS</button>
             </div>
