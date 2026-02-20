@@ -149,7 +149,7 @@ function Body() {
           <div className="container text-[2rem] w-[15rem] h-[10rem] md:h-auto overflow-hidden relative">
             <div id="themeSubMenu" className="flex flex-col link translate-x-[-20rem] absolute top-0 ml-8">
               <button className="link link-underline-25 link-emphasis text-homepage-text text-left"
-              onClick={() => window.open('/#/xp', '_self')}>XP</button>
+              onClick={() => window.open('/#/xp', '_self')}>Window XP Test</button>
             </div>
             <div id="portfolioSubMenu" className="flex flex-col link translate-x-[-20rem] absolute top-0 ml-8">
               <button onClick={() => setActive('Portfolio')} className="link link-underline-25 link-emphasis text-homepage-text text-left" href="#">Websites</button>
