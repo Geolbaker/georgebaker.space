@@ -7,21 +7,19 @@ import XpTheme from './components/global/main/themes/xp/body.js';
 import MacTheme from './components/global/main/themes/mac/body.js';
 import FourOneFour from './404.js';
 import './components/global/secrets.js';
-import { HashRouter, Routes, Route} from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 
 
 function App() {
 
   return (
     <div id="home" className="h-screen">
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<Body />} />
-          <Route path="/xp" element={<XpTheme />} />
-          <Route path="/mac" element={<MacTheme />} />
-          <Route path="*" element={<FourOneFour />}/>
-        </Routes>
-      </HashRouter>
+      <Routes>
+        <Route path="/" element={<Body />} />
+        <Route path="/xp" element={<XpTheme />} />
+        <Route path="/mac" element={<MacTheme />} />
+        <Route path="*" element={<FourOneFour />}/>
+      </Routes>
     </div>
 
 
