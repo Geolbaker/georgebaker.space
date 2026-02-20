@@ -1,18 +1,11 @@
-<script>
-  var pathSegmentsToKeep = 1;
-  var l = window.location;
-  var newUrl =
-    l.protocol +
-    "//" +
-    l.hostname +
-    (l.port ? ":" + l.port : "") +
-    l.pathname
-      .split("/")
-      .slice(0, 1 + pathSegmentsToKeep)
-      .join("/") +
-    "/?/" +
-    l.pathname.slice(1) +
-    l.search +
-    l.hash;
-  window.location.replace(newUrl);
-</script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Page not found</title>
+  </head>
+  <body>
+    <h1>404</h1>
+    <p>Page not found.</p>
+  </body>
+</html>
