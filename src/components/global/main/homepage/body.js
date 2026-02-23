@@ -157,11 +157,12 @@ function Body() {
               onClick={() => window.open('/#/xp', '_self')}>Windows XP</button>
             </div>
             <div id="portfolioSubMenu" className="flex flex-col link translate-x-[-20rem] absolute top-0 ml-8">
-              <button onClick={() => setActive('Portfolio')} className="link link-underline-25 link-emphasis text-homepage-text text-left" href="#">Websites</button>
+              <button onClick={() => setActive('Portfolio')} className="link link-underline-25 link-emphasis text-homepage-text text-left">Websites</button>
+              <button onClick={() => setActive('Portfolio')} className="link link-underline-25 link-emphasis text-homepage-text text-left">Voiceovers</button>
             </div>
             <div id="personalSubMenu" className="flex flex-col link translate-x-[-20rem] absolute top-0 ml-8">
-              <button onClick={() => setActive('Personal')} className="link link-underline-25 link-emphasis text-homepage-text text-left" href="#">About Me</button>
-              <button onClick={() => setActive('Documentary')} className="link link-underline-25 link-emphasis text-homepage-text text-left" href="#">Documentary</button>
+              <button onClick={() => setActive('Personal')} className="link link-underline-25 link-emphasis text-homepage-text text-left">About Me</button>
+              <button onClick={() => setActive('Documentary')} className="link link-underline-25 link-emphasis text-homepage-text text-left">Documentary</button>
               <a href="https://www.goodreads.com/geolbaker" target="_blank" rel="noreferrer" className="link link-underline-25 link-emphasis text-homepage-text text-left">
                 GoodReads
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="inline font-[900] fill-homepage-text scale-[1.3] left-[12px] bottom-[3px] relative stroke-homepage-text link" viewBox="0 0 16 16">
