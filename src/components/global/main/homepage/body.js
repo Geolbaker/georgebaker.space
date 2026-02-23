@@ -160,7 +160,7 @@ function Body() {
             </div>
             <div id="portfolioSubMenu" className="flex flex-col link translate-x-[-20rem] absolute top-0 ml-8">
               <button onClick={() => setActive('Portfolio')} className="link link-underline-25 link-emphasis text-homepage-text text-left">Websites</button>
-              <button onClick={() => setActive('Portfolio')} className="link link-underline-25 link-emphasis text-homepage-text text-left">Voiceovers</button>
+              <button onClick={() => setActive('Voiceover')} className="link link-underline-25 link-emphasis text-homepage-text text-left">Voiceover</button>
             </div>
             <div id="personalSubMenu" className="flex flex-col link translate-x-[-20rem] absolute top-0 ml-8">
               <button onClick={() => setActive('Personal')} className="link link-underline-25 link-emphasis text-homepage-text text-left">About Me</button>
