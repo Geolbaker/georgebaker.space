@@ -20,6 +20,7 @@ function Body() {
       var comingSoon = document.getElementById("comingSoon");
       //sections
       var portfolioSection = document.getElementById("portfolioSection");
+      var voiceoverSection = document.getElementById("voiceoverSection");
       var personalSection = document.getElementById("personalSection");
       var documentarySection = document.getElementById("documentarySection");
       //other elements
@@ -45,6 +46,7 @@ function Body() {
 
       //section animations
       sectionAnimation(portfolioSection, 0);
+      sectionAnimation(voiceoverSection, 0);
       sectionAnimation(personalSection, 0);
       sectionAnimation(documentarySection, 0);
 
@@ -332,6 +334,40 @@ function Body() {
         </div>
       </div>
       {/*End of Portfolio Section*/}
+
+      {/*Voiceover Section*/}
+      <div className={`${active === 'Voiceover' ? "translate-y-0 opacity-[100] pt-12 sm:pt-24 h-[20rem]" : "h-[0.0001rem] opacity-[0.0001] translate-y-[100vh] overflow-hidden"} relative top-0 z-10 w-screen flex justify-center transition-all duration-[1s] `}>
+        <div id="voiceoverSection" className=" transition-all duration-500 opacity-[0.0001] ">
+          <div className="container flex justify-center items-center flex-col text-homepage-text p-4 sm:p-12 mb-12 sm:mb-4">
+            <span className="text-[4rem] sm:text-[6rem] lg:text-[9rem] text-center relative after:content-[''] after:top-[3.5rem] sm:after:top-[5.5rem] lg:after:top-[8.5rem] after:left-0 after:w-full after:h-[4rem]
+            after:bg-homepage-bg after:border-t-2 after:opacity-[85%] after:border-homepage-alt after:absolute after:transition-all after:duration-500
+            transition-all duration-500">Voiceovers</span>
+            <div className="w-full md:w-[90%] h-full gap-8 flex flex-col text-[1.3rem] !font-sans justify-center text-left pb-12 text-homepage-text ">
+
+              <div className="w-full h-full gap-8 flex pt-4 flex-col text-[1.3rem] !font-sans justify-center text-left pb-4 text-homepage-text ">
+                <p className="text-homepage-text">
+                  Placeholder Subtitle
+                </p>
+              </div>
+
+              <div className="w-full h-full gap-8 flex pt-2 flex-col text-[2rem] !font-['DM_Serif_Display'] justify-center text-left text-homepage-text ">
+                <p className="text-homepage-text">
+                  Voiceover Title Placeholder
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+
+                Voiceover Portfolio Placeholder
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {/*End of Voiceover Section*/}
 
       {/*Personal Section*/}
       <div className={`${active === 'Personal' ? "translate-y-0 opacity-[100] pt-12 sm:pt-24 h-[20rem]" : "h-[0.0001rem] opacity-[0.0001] translate-y-[100vh] overflow-hidden h-0"} relative top-0 z-10 w-screen flex justify-center transition-all duration-[1s] `}>
