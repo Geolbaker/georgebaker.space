@@ -1,16 +1,16 @@
-import './App.css';
+import "./App.css";
 
-import Body from './components/global/main/homepage/body.js';
-import XpTheme from './components/global/main/themes/xp/body.js';
-import MacTheme from './components/global/main/themes/mac/body.js';
-import FourOneFour from './404.js';
-import './components/global/secrets.js';
+import Body from "./components/global/main/homepage/body.js";
+import XpTheme from "./components/global/main/themes/xp/body.js";
+import MacTheme from "./components/global/main/themes/mac/body.js";
+import FourOneFour from "./404.js";
+import "./components/global/secrets.js";
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div id="home" className="h-screen">
+    <div id="home" className="h-full">
       <Routes>
         <Route path="/" element={<Body />} />
         <Route path="/xp" element={<XpTheme />} />
