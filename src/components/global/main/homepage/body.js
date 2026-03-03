@@ -385,9 +385,15 @@ function Body() {
             <div className="w-full md:w-[90%] h-full gap-8 flex flex-col text-[1.3rem] !font-sans justify-center text-left pb-12 text-homepage-text ">
               <div className="w-full h-full gap-8 flex pt-4 flex-col text-[1.3rem] !font-sans justify-center text-left pb-4 text-homepage-text ">
                 <p className="text-homepage-text">
-                  I've worked with various clients, businesses and charities
-                  over the years of me being a Web Designer and Web Developer.
-                  You can see some of them below.
+                  I specialise in Wordpress and Expression Engine, and have
+                  extensive experience in Shopify theme development, API/CMS
+                  integrations, custom plugin creation, custom animation via
+                  GSAP, and static showcase/brochure sites.
+                </p>
+                <p className="text-homepage-text">
+                  I've worked with over 100 clients, ranging from small local
+                  businesses to international charities, over the years of me
+                  being a Web Developer. You can see some of them below.
                 </p>
               </div>
 
@@ -397,13 +403,23 @@ function Body() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 <WebsiteCardComponent
-                  name="World Energy Council"
+                  name="The Toffee Apple Co."
                   tags={[
-                    "Expression Engine",
-                    "Large Developments",
+                    "Wordpress",
+                    "Solo Full Site Development",
+                    "Custom Animation",
+                  ]}
+                  link="https://www.thetoffeeapplecompany.co.uk/"
+                />
+                <WebsiteCardComponent
+                  name="Harriet Kelsall Jewellery"
+                  tags={[
+                    "Wordpress",
+                    "Custom API/CMS Integration",
+                    "Full Site Development",
                     "General Maintenance",
                   ]}
-                  link=""
+                  link="https://www.hkjewellery.co.uk/"
                 />
                 <WebsiteCardComponent
                   name="World Heart Federation"
@@ -412,75 +428,61 @@ function Body() {
                     "Large Developments",
                     "General Maintenance",
                   ]}
-                  link=""
+                  link="https://world-heart-federation.org/"
                 />
                 <WebsiteCardComponent
-                  name="World Obesity Federation"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
+                  name="World Energy Council"
+                  tags={[
+                    "Expression Engine",
+                    "Large Developments",
+                    "General Maintenance",
+                  ]}
+                  link="https://www.worldenergy.org/"
                 />
                 <WebsiteCardComponent
-                  name="Nottingham City Council Early Help"
-                  tags={["Expression Engine", "Full Site Development"]}
-                  link=""
+                  name="Business Lincolnshire"
+                  tags={[
+                    "Wordpress",
+                    "Full Site Development",
+                    "General Maintenance",
+                    "Custom BMS Plugin",
+                  ]}
+                  link="https://www.businesslincolnshire.com/"
                 />
                 <WebsiteCardComponent
                   name="Hobson Industries"
                   tags={["Shopify", "Full Site Development"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="Whisby Garden Centre"
-                  tags={["Wordpress", "Full Site Development", "PENDING"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="ATC Instillations"
-                  tags={["Wordpress", "Full Site Development", "PENDING"]}
-                  link=""
+                  link="https://hobsonindustries.co.uk/"
                 />
                 <WebsiteCardComponent
                   name="Batemans Brewery"
-                  tags={["Wordpress", "Full Site Development", "PENDING"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="General Chiropractor Council"
                   tags={[
-                    "Expression Engine",
+                    "Wordpress",
+                    "Full Site Development",
                     "Large Developments",
                     "General Maintenance",
                   ]}
-                  link=""
+                  link="https://www.batemansbrewery.co.uk/"
+                />
+                <WebsiteCardComponent
+                  name="World Obesity Federation"
+                  tags={["Expression Engine", "General Maintenance"]}
+                  link="https://www.worldobesity.org/"
+                />
+                <WebsiteCardComponent
+                  name="Nottingham City Council Early Help"
+                  tags={["Expression Engine", "Full Site Development"]}
+                  link="https://www.earlyhelpnottingham.org.uk/"
                 />
                 <WebsiteCardComponent
                   name="Coveris"
                   tags={["Expression Engine", "General Maintenance"]}
-                  link=""
+                  link="https://www.coveris.com/"
                 />
                 <WebsiteCardComponent
                   name="LNAA"
                   tags={["Wordpress", "Partial Full Site Development"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="APSS"
-                  tags={[
-                    "Expression Engine",
-                    "Large Developments",
-                    "General Maintenance",
-                  ]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="World Obesity Day"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="Inzpire"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
+                  link="https://www.ambucopter.org.uk/"
                 />
                 <WebsiteCardComponent
                   name="HPV Campaign"
@@ -489,140 +491,57 @@ function Body() {
                     "Large Developments",
                     "General Maintenance",
                   ]}
-                  link=""
+                  link="https://askabouthpv.org/"
                 />
                 <WebsiteCardComponent
                   name="Uni Global Union"
                   tags={["Wordpress", "Full Micro-Site Development"]}
-                  link=""
+                  link="https://uniglobalunion.org/"
                 />
                 <WebsiteCardComponent
                   name="Optima Graphic Design"
                   tags={["Expression Engine", "Large Developments"]}
-                  link=""
+                  link="https://www.optimadesign.co.uk/"
                 />
                 <WebsiteCardComponent
                   name="Lincoln BIG"
                   tags={["Expression Engine", "General Maintenance"]}
-                  link=""
+                  link="https://www.lincolnbig.co.uk/"
                 />
                 <WebsiteCardComponent
                   name="Branston"
                   tags={["Expression Engine", "Large Developments"]}
-                  link=""
+                  link="https://www.branston.com/"
                 />
                 <WebsiteCardComponent
                   name="Lindum Group"
                   tags={["Wordpress", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="INNES England"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
+                  link="https://lindumgroup.com/"
                 />
                 <WebsiteCardComponent
                   name="IUF"
                   tags={["Wordpress", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="Lincoln College"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="World Stroke Organisation"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="World Stroke Academy"
-                  tags={["Wordpress", "General Maintenance"]}
-                  link=""
+                  link="https://www.iuf.org/"
                 />
                 <WebsiteCardComponent
                   name="St Hughs School"
                   tags={["Expression Engine", "General Maintenance"]}
-                  link=""
+                  link="https://www.st-hughs.lincs.sch.uk/"
                 />
                 <WebsiteCardComponent
                   name="Gissing"
                   tags={["Expression Engine", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="MicronClean"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="Lincolnshire Music Services"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="KBSA"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="England Golf"
-                  tags={[
-                    "Wordpress",
-                    "Large Developments",
-                    "General Maintenance",
-                  ]}
-                  link=""
+                  link="https://www.gissingfe.co.uk/"
                 />
                 <WebsiteCardComponent
                   name="Hutchinsons"
                   tags={["Wordpress", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="Cooke and Arkwright"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="Allen Signs"
-                  tags={["Expression Engine", "Full Site Rebrand"]}
-                  link=""
+                  link="https://www.hutchinsons.co.uk/"
                 />
                 <WebsiteCardComponent
                   name="The Collection/Lincoln Museum"
                   tags={["Expression Engine", "Full Site Rebrand"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="Great Wood Farm"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="Nerve Tumors"
-                  tags={[
-                    "Expression Engine",
-                    "Large Development",
-                    "General Maintenance",
-                  ]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="Equidem"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="Delta Simons"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
-                />
-                <WebsiteCardComponent
-                  name="Rulac"
-                  tags={["Expression Engine", "General Maintenance"]}
-                  link=""
+                  link="https://www.lincolnmuseum.com/"
                 />
               </div>
 
@@ -633,13 +552,12 @@ function Body() {
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 <WebsiteCardComponent
                   name="Lincoln Student Lettings"
-                  tags={["SUMS", "Full Site Development"]}
+                  tags={["Full Site Development"]}
                   link=""
                 />
                 <WebsiteCardComponent
                   name="Lincoln Students’ Union"
                   tags={[
-                    "SUMS",
                     "Main InHouse Site",
                     "Large Developments",
                     "General Maintenance",
@@ -648,31 +566,22 @@ function Body() {
                 />
                 <WebsiteCardComponent
                   name="SUMS"
-                  tags={[
-                    "SUMS",
-                    "Secondary InHouse Site",
-                    "General Maintenance",
-                  ]}
+                  tags={["Secondary InHouse Site", "General Maintenance"]}
                   link=""
                 />
                 <WebsiteCardComponent
                   name="Northumbria Students’ Union"
-                  tags={[
-                    "SUMS",
-                    "Full Site Development",
-                    "General Maintenance",
-                  ]}
+                  tags={["Full Site Development", "General Maintenance"]}
                   link=""
                 />
                 <WebsiteCardComponent
                   name="York St John Students’ Union"
-                  tags={["SUMS", "Large Developments", "General Maintenance"]}
+                  tags={["Large Developments", "General Maintenance"]}
                   link=""
                 />
                 <WebsiteCardComponent
-                  name="Northampton Student’s Union"
+                  name="Northampton Students’ Union"
                   tags={[
-                    "SUMS",
                     "Partial Full Site Development",
                     "General Maintenance",
                   ]}
@@ -680,47 +589,47 @@ function Body() {
                 />
                 <WebsiteCardComponent
                   name="Bath Spa Students’ Union"
-                  tags={["SUMS", "Large Developments", "General Maintenance"]}
+                  tags={["Large Developments", "General Maintenance"]}
                   link=""
                 />
                 <WebsiteCardComponent
                   name="University of Nottingham Students’ Union"
-                  tags={["SUMS", "General Maintenance"]}
+                  tags={["General Maintenance"]}
                   link=""
                 />
                 <WebsiteCardComponent
                   name="Kent Union"
-                  tags={["SUMS", "General Maintenance"]}
+                  tags={["General Maintenance"]}
                   link=""
                 />
                 <WebsiteCardComponent
                   name="Hull University Union"
-                  tags={["SUMS", "General Maintenance"]}
+                  tags={["General Maintenance"]}
                   link=""
                 />
                 <WebsiteCardComponent
                   name="University of York Students’ Union"
-                  tags={["SUMS", "General Maintenance"]}
+                  tags={["General Maintenance"]}
                   link=""
                 />
                 <WebsiteCardComponent
                   name="Brookes Union"
-                  tags={["SUMS", "General Maintenance"]}
+                  tags={["General Maintenance"]}
                   link=""
                 />
                 <WebsiteCardComponent
                   name="Loughborough Students’ Union"
-                  tags={["SUMS", "General Maintenance"]}
+                  tags={["General Maintenance"]}
                   link=""
                 />
                 <WebsiteCardComponent
                   name="University of Westminster Students’ Union"
-                  tags={["SUMS", "General Maintenance"]}
+                  tags={["General Maintenance"]}
                   link=""
                 />
                 <WebsiteCardComponent
                   name="University of Manchester Students’ Union"
-                  tags={["SUMS", "General Maintenance"]}
+                  tags={["General Maintenance"]}
                   link=""
                 />
               </div>
